@@ -116,6 +116,7 @@ def bwa_iter(reference, fasta, algorithm):
                 if fastmap_fields[1] == '0' and fastmap_fields[2] == length: #  full hits only
                     mapped = True
                     for hit in fastmap_fields[4:]:
+                        if hit == '*': continue
                         (contig, pos) = hit.split(":")
                         strand = pos[0]
                         positions.append((contig, int(pos[1:]), int(pos[1:]) + int(length) - 1, strand))
